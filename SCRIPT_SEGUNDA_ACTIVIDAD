@@ -1,0 +1,27 @@
+CREATE TABLE users(
+id SERIAL PRIMARY KEY,
+name VARCHAR (50)
+);
+
+CREATE TABLE images(
+id SERIAL PRIMARY KEY,
+picture_url VARCHAR (100),
+user_id INTEGER REFERENCES users(id)
+);
+
+CREATE TABLE likes(
+user_id INTEGER REFERENCES users(id),
+img_id INTEGER REFERENCES images(id),
+PRIMARY KEY(user_id, img_id)
+);
+
+CREATE TABLE tags(
+id SERIAL PRIMARY KEY,
+tag VARCHAR (50)
+);
+
+CREATE TABLE img_tags(
+img_id INTEGER REFERENCES images(id),
+tag_id INTEGER REFERENCES tags(id),
+PRIMARY KEY(img_id, tag_id)
+);
